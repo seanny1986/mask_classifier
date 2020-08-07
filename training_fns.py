@@ -10,7 +10,7 @@ import time
 import copy
 import ssl
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device = "cpu"#torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 def to_numpy(tensor):
     return tensor.detach().cpu().numpy() if tensor.requires_grad else tensor.cpu().numpy()

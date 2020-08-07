@@ -15,6 +15,8 @@ import argparse
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-e", "--epochs", type=int, default=25, required=True, help="number of training epochs")
+ap.add_argument("-lr", "--learning_rate", type=float, default=1e-3, required=True, help="learning rate")
+ap.add_argument("-sb", "--save_best", type=bool, default=True, required=True, help="save the best model")
 args = ap.parse_args()
 
 if __name__ == "__main__":
@@ -69,6 +71,7 @@ if __name__ == "__main__":
     exp_lr_scheduler = lr_scheduler.StepLR(optimizer, step_size=7, gamma=1e-1)
 
     # train the model
+    if args.save_best: save_path = os.getcwd(); else: save_path = None
     print("training the model")
     trained_model, losses, accs = fns.train_model(train_images,
                                                     dataloader, 
@@ -76,7 +79,8 @@ if __name__ == "__main__":
                                                     criterion, 
                                                     optimizer, 
                                                     exp_lr_scheduler, 
-                                                    num_epochs=args.epochs)
+                                                    args.epochs,
+                                                    save_path)
     
     # plot loss functions
     print("plotting loss functions")

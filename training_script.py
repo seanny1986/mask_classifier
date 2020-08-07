@@ -18,7 +18,7 @@ ap.add_argument("-e", "--epochs", type=int, default=25, required=True, help="num
 args = ap.parse_args()
 
 if __name__ == "__main__":
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = "cpu"#torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     print("device is: ", device)
     base_path = os.getcwd()
     print("current working directory is: ", base_path)

@@ -71,7 +71,10 @@ if __name__ == "__main__":
     exp_lr_scheduler = lr_scheduler.StepLR(optimizer, step_size=7, gamma=1e-1)
 
     # train the model
-    if args.save_best: save_path = os.getcwd(); else: save_path = None
+    if args.save_best: 
+        save_path = os.getcwd() 
+    else: 
+        save_path = None
     print("training the model")
     trained_model, losses, accs = fns.train_model(train_images,
                                                     dataloader, 
